@@ -1,0 +1,142 @@
+[
+  {
+    "id": "d1",
+    "kind": "daily",
+    "metric": "kills",
+    "target": 10,
+    "reward": { "gems": 50 },
+    "title": "【デイリー】敵を10体倒す",
+    "description": "敵を10体倒す。",
+    "resetPolicy": "dailyJst"
+  },
+  {
+    "id": "d2",
+    "kind": "daily",
+    "metric": "kills",
+    "target": 100,
+    "reward": { "gems": 100 },
+    "title": "【デイリー】敵を100体倒す",
+    "description": "敵を100体倒す。",
+    "resetPolicy": "dailyJst"
+  },
+  {
+    "id": "d3",
+    "kind": "daily",
+    "metric": "gachaPulls",
+    "target": 5,
+    "reward": { "gems": 50 },
+    "title": "【デイリー】ガチャを5回引く",
+    "description": "ガチャを5回引く。",
+    "resetPolicy": "dailyJst"
+  },
+  {
+    "id": "m1",
+    "kind": "achievement",
+    "metric": "kills",
+    "target": 10,
+    "reward": { "gems": 50 },
+    "title": "敵を10体倒す",
+    "description": "敵を10体倒す。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m2",
+    "kind": "achievement",
+    "metric": "kills",
+    "target": 100,
+    "reward": { "gems": 300 },
+    "title": "敵を100体倒す",
+    "description": "敵を100体倒す。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m3",
+    "kind": "achievement",
+    "metric": "kills",
+    "target": 1000,
+    "reward": { "gems": 1000 },
+    "title": "敵を1000体倒す",
+    "description": "敵を1000体倒す。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m4",
+    "kind": "achievement",
+    "metric": "gachaPulls",
+    "target": 5,
+    "reward": { "gems": 100 },
+    "title": "ガチャを5回引く",
+    "description": "ガチャを5回引く。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m5",
+    "kind": "achievement",
+    "metric": "gachaPulls",
+    "target": 50,
+    "reward": { "gems": 500 },
+    "title": "ガチャを50回引く",
+    "description": "ガチャを50回引く。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m6",
+    "kind": "achievement",
+    "metric": "highestStage",
+    "target": 10,
+    "reward": { "gems": 500 },
+    "title": "ステージ10到達",
+    "description": "ステージ10に到達する。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m7",
+    "kind": "achievement",
+    "metric": "highestStage",
+    "target": 50,
+    "reward": { "gems": 2000 },
+    "title": "ステージ50到達",
+    "description": "ステージ50に到達する。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m8",
+    "kind": "achievement",
+    "metric": "highestStage",
+    "target": 100,
+    "reward": { "gems": 5000 },
+    "title": "ステージ100到達",
+    "description": "ステージ100に到達する。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m9",
+    "kind": "achievement",
+    "metric": "kills",
+    "target": 5000,
+    "reward": { "gems": 3000 },
+    "title": "敵を5000体倒す",
+    "description": "敵を5000体倒す。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m10",
+    "kind": "achievement",
+    "metric": "gachaPulls",
+    "target": 100,
+    "reward": { "gems": 1500 },
+    "title": "ガチャを100回引く",
+    "description": "ガチャを100回引く。",
+    "resetPolicy": "never"
+  },
+  {
+    "id": "m11",
+    "kind": "achievement",
+    "metric": "highestStage",
+    "target": 200,
+    "reward": { "gems": 10000 },
+    "title": "ステージ200到達",
+    "description": "ステージ200に到達する。",
+    "resetPolicy": "never"
+  }
+]

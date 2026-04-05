@@ -1,0 +1,30 @@
+[
+  {
+    "id": "cross",
+    "name": "クロス陣形",
+    "description": "十字に配置: 全員のDPS +20%",
+    "requiredSlots": [1, 3, 4, 5, 7],
+    "bonus": { "kind": "globalDps", "value": 1.2 }
+  },
+  {
+    "id": "x_shape",
+    "name": "X字陣形",
+    "description": "X字に配置: 後衛(最後列)のDPS +40%",
+    "requiredSlots": [0, 2, 4, 6, 8],
+    "bonus": { "kind": "backDps", "value": 1.4 }
+  },
+  {
+    "id": "v_shape",
+    "name": "V字陣形",
+    "description": "V字に配置: 前衛(最前列)のDPS +40%",
+    "requiredSlots": [0, 2, 4, 7],
+    "bonus": { "kind": "frontDps", "value": 1.4 }
+  },
+  {
+    "id": "line",
+    "name": "一文字陣形",
+    "description": "中衛一列に配置: 中衛(中央列)のDPS +50%",
+    "requiredSlots": [3, 4, 5],
+    "bonus": { "kind": "midDps", "value": 1.5 }
+  }
+]

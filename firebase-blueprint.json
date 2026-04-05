@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "VersionedSaveDocument": {
+      "title": "VersionedSaveDocument",
+      "description": "Versioned save envelope with leaderboard metadata.",
+      "type": "object",
+      "properties": {
+        "saveSchemaVersion": {
+          "type": "number",
+          "description": "Schema version for migration."
+        },
+        "contentVersion": {
+          "type": "string",
+          "description": "Content version tied to JSON catalogs."
+        },
+        "lastProcessedAt": {
+          "type": "number",
+          "description": "Last simulation timestamp."
+        },
+        "snapshot": {
+          "type": "object",
+          "description": "Serialized game snapshot."
+        },
+        "highestStage": {
+          "type": "number",
+          "description": "Highest stage reached by the user."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name used for leaderboard."
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Client-issued timestamp of the last save."
+        }
+      },
+      "required": [
+        "saveSchemaVersion",
+        "contentVersion",
+        "lastProcessedAt",
+        "snapshot",
+        "highestStage",
+        "displayName",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "saves/{userId}": {
+      "schema": {
+        "$ref": "#/entities/VersionedSaveDocument"
+      },
+      "description": "Stores the latest cloud backup and leaderboard projection for a single user."
+    }
+  }
+}

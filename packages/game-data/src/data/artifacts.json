@@ -1,0 +1,110 @@
+[
+  {
+    "id": "fire_pen",
+    "name": "炎のペンダント",
+    "description": "炎属性のDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "factionDps",
+    "target": "Fire",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "water_cha",
+    "name": "水の聖杯",
+    "description": "水属性のDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "factionDps",
+    "target": "Water",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "nature_shi",
+    "name": "大地の盾",
+    "description": "自然属性のDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "factionDps",
+    "target": "Nature",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "light_swo",
+    "name": "光の剣",
+    "description": "光属性のDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "factionDps",
+    "target": "Light",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "dark_rob",
+    "name": "闇のローブ",
+    "description": "闇属性のDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "factionDps",
+    "target": "Dark",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "warrior_bad",
+    "name": "戦士の証",
+    "description": "ウォリアーのDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "classDps",
+    "target": "Warrior",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "archer_bow",
+    "name": "狩人の弓",
+    "description": "アーチャーのDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "classDps",
+    "target": "Archer",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "mage_sta",
+    "name": "魔術師の杖",
+    "description": "メイジのDPSを増加",
+    "maxLevel": 10,
+    "baseCost": 1,
+    "costMultiplier": 1.5,
+    "effectKind": "classDps",
+    "target": "Mage",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "boss_sla",
+    "name": "ボススレイヤー",
+    "description": "ボスの最大HPを減少",
+    "maxLevel": 5,
+    "baseCost": 3,
+    "costMultiplier": 2,
+    "effectKind": "bossHpReduction",
+    "effectPerLevel": 0.05
+  },
+  {
+    "id": "gold_rin",
+    "name": "黄金の指輪",
+    "description": "獲得ゴールドを増加",
+    "maxLevel": 10,
+    "baseCost": 2,
+    "costMultiplier": 1.8,
+    "effectKind": "goldDrop",
+    "effectPerLevel": 0.2
+  }
+]

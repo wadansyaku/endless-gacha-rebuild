@@ -1,0 +1,92 @@
+[
+  {
+    "id": "base_dps",
+    "name": "力の探求",
+    "description": "全ヒーローの基礎DPSが +5% 増加",
+    "maxLevel": 50,
+    "baseCost": 1,
+    "costMultiplier": 1.2,
+    "effectKind": "baseDps",
+    "effectPerLevel": 0.05
+  },
+  {
+    "id": "gold_gain",
+    "name": "富の蓄積",
+    "description": "敵討伐時の獲得ゴールドが +10% 増加",
+    "maxLevel": 50,
+    "baseCost": 1,
+    "costMultiplier": 1.3,
+    "effectKind": "goldGain",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "offline_efficiency",
+    "name": "時の支配",
+    "description": "オフライン進行時の効率が +5% 増加 (初期20%)",
+    "maxLevel": 16,
+    "baseCost": 2,
+    "costMultiplier": 1.5,
+    "effectKind": "offlineEfficiency",
+    "effectPerLevel": 0.05
+  },
+  {
+    "id": "gacha_discount",
+    "name": "交渉術",
+    "description": "ノーマルガチャの費用が -2% 減少",
+    "maxLevel": 25,
+    "baseCost": 3,
+    "costMultiplier": 1.4,
+    "effectKind": "gachaDiscount",
+    "effectPerLevel": 0.02
+  },
+  {
+    "id": "sr_rate_up",
+    "name": "幸運の星",
+    "description": "ノーマルガチャのSR排出率が +0.1% 増加",
+    "maxLevel": 20,
+    "baseCost": 5,
+    "costMultiplier": 1.6,
+    "effectKind": "srRateUp",
+    "effectPerLevel": 0.001
+  },
+  {
+    "id": "boss_damage",
+    "name": "巨獣狩り",
+    "description": "ボスへのダメージが +10% 増加",
+    "maxLevel": 30,
+    "baseCost": 2,
+    "costMultiplier": 1.3,
+    "effectKind": "bossDamage",
+    "effectPerLevel": 0.1
+  },
+  {
+    "id": "hero_level_discount",
+    "name": "教育係",
+    "description": "ヒーローのレベルアップ費用が -2% 減少",
+    "maxLevel": 25,
+    "baseCost": 3,
+    "costMultiplier": 1.4,
+    "effectKind": "heroLevelDiscount",
+    "effectPerLevel": 0.02
+  },
+  {
+    "id": "equipment_drop_rate",
+    "name": "トレジャーハンター",
+    "description": "装備のドロップ率が +1% 増加",
+    "maxLevel": 20,
+    "baseCost": 5,
+    "costMultiplier": 1.5,
+    "effectKind": "equipmentDropRate",
+    "effectPerLevel": 0.01
+  },
+  {
+    "id": "starting_stage",
+    "name": "強者の余裕",
+    "description": "転生時の開始ステージが +1 増加",
+    "maxLevel": 50,
+    "baseCost": 10,
+    "costMultiplier": 1.8,
+    "effectKind": "startingStage",
+    "effectPerLevel": 1
+  }
+]

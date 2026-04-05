@@ -1,0 +1,60 @@
+[
+  {
+    "id": "standard",
+    "name": "標準召喚",
+    "kind": "normal",
+    "currency": "gold",
+    "cost": 100,
+    "rates": {
+      "N": 0.7,
+      "R": 0.24,
+      "SR": 0.05,
+      "SSR": 0.01,
+      "UR": 0
+    },
+    "poolHeroIds": [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "h7",
+      "h8",
+      "h9",
+      "h10",
+      "h11",
+      "h12"
+    ]
+  },
+  {
+    "id": "premium",
+    "name": "プレミアム召喚",
+    "kind": "premium",
+    "currency": "gems",
+    "cost": 300,
+    "pityLimit": 30,
+    "guaranteeRarity": "SSR",
+    "rates": {
+      "N": 0,
+      "R": 0.5,
+      "SR": 0.3,
+      "SSR": 0.15,
+      "UR": 0.05
+    },
+    "poolHeroIds": [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "h7",
+      "h8",
+      "h9",
+      "h10",
+      "h11",
+      "h12"
+    ]
+  }
+]

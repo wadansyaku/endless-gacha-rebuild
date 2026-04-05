@@ -1,0 +1,22 @@
+{
+  "name": "@endless-gacha/firebase-adapter",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@endless-gacha/game-core": "workspace:*",
+    "@endless-gacha/shared": "workspace:*",
+    "firebase": "^12.11.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

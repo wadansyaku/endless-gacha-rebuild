@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node", "vitest/globals"]
+  },
+  "include": [
+    "src/App.tsx",
+    "src/App.test.tsx",
+    "src/env.d.ts",
+    "src/index.css",
+    "src/lib/core.ts",
+    "src/lib/content.ts",
+    "src/lib/cloud.ts",
+    "src/lib/storage.ts",
+    "src/main.tsx",
+    "src/routes/**/*.tsx",
+    "src/session/**/*.tsx",
+    "src/test/**/*.ts",
+    "src/vendor/**/*.ts",
+    "vite.config.ts"
+  ],
+  "exclude": ["src/app/**", "src/lib/firebase.ts", "src/lib/format.ts", "src/lib/game-store.tsx", "src/vite-env.d.ts"]
+}

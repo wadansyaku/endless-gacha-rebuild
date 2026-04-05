@@ -1,0 +1,27 @@
+{
+  "name": "@endless-gacha/web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@endless-gacha/firebase-adapter": "workspace:*",
+    "@endless-gacha/game-core": "workspace:*",
+    "@endless-gacha/game-data": "workspace:*",
+    "@endless-gacha/shared": "workspace:*",
+    "@endless-gacha/ui": "workspace:*",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "id": "weapon-n",
+    "type": "weapon",
+    "rarity": "N",
+    "name": "木の剣",
+    "dpsBonus": 10,
+    "dpsMultiplier": 1.02,
+    "sellPrice": 20,
+    "synthesisTargetRarity": "R"
+  },
+  {
+    "id": "weapon-r",
+    "type": "weapon",
+    "rarity": "R",
+    "name": "鉄の剣",
+    "dpsBonus": 50,
+    "dpsMultiplier": 1.05,
+    "sellPrice": 100,
+    "synthesisTargetRarity": "SR"
+  },
+  {
+    "id": "weapon-sr",
+    "type": "weapon",
+    "rarity": "SR",
+    "name": "鋼の剣",
+    "dpsBonus": 200,
+    "dpsMultiplier": 1.1,
+    "sellPrice": 500,
+    "synthesisTargetRarity": "SSR"
+  },
+  {
+    "id": "weapon-ssr",
+    "type": "weapon",
+    "rarity": "SSR",
+    "name": "勇者の剣",
+    "dpsBonus": 1000,
+    "dpsMultiplier": 1.2,
+    "sellPrice": 2000,
+    "synthesisTargetRarity": "UR"
+  },
+  {
+    "id": "weapon-ur",
+    "type": "weapon",
+    "rarity": "UR",
+    "name": "神剣",
+    "dpsBonus": 5000,
+    "dpsMultiplier": 1.5,
+    "sellPrice": 10000
+  },
+  {
+    "id": "armor-n",
+    "type": "armor",
+    "rarity": "N",
+    "name": "布の服",
+    "dpsBonus": 10,
+    "dpsMultiplier": 1.02,
+    "sellPrice": 20,
+    "synthesisTargetRarity": "R"
+  },
+  {
+    "id": "armor-r",
+    "type": "armor",
+    "rarity": "R",
+    "name": "革の鎧",
+    "dpsBonus": 50,
+    "dpsMultiplier": 1.05,
+    "sellPrice": 100,
+    "synthesisTargetRarity": "SR"
+  },
+  {
+    "id": "armor-sr",
+    "type": "armor",
+    "rarity": "SR",
+    "name": "鉄の鎧",
+    "dpsBonus": 200,
+    "dpsMultiplier": 1.1,
+    "sellPrice": 500,
+    "synthesisTargetRarity": "SSR"
+  },
+  {
+    "id": "armor-ssr",
+    "type": "armor",
+    "rarity": "SSR",
+    "name": "勇者の鎧",
+    "dpsBonus": 1000,
+    "dpsMultiplier": 1.2,
+    "sellPrice": 2000,
+    "synthesisTargetRarity": "UR"
+  },
+  {
+    "id": "armor-ur",
+    "type": "armor",
+    "rarity": "UR",
+    "name": "神鎧",
+    "dpsBonus": 5000,
+    "dpsMultiplier": 1.5,
+    "sellPrice": 10000
+  },
+  {
+    "id": "accessory-n",
+    "type": "accessory",
+    "rarity": "N",
+    "name": "木の指輪",
+    "dpsBonus": 10,
+    "dpsMultiplier": 1.02,
+    "sellPrice": 20,
+    "synthesisTargetRarity": "R"
+  },
+  {
+    "id": "accessory-r",
+    "type": "accessory",
+    "rarity": "R",
+    "name": "銅の指輪",
+    "dpsBonus": 50,
+    "dpsMultiplier": 1.05,
+    "sellPrice": 100,
+    "synthesisTargetRarity": "SR"
+  },
+  {
+    "id": "accessory-sr",
+    "type": "accessory",
+    "rarity": "SR",
+    "name": "銀の指輪",
+    "dpsBonus": 200,
+    "dpsMultiplier": 1.1,
+    "sellPrice": 500,
+    "synthesisTargetRarity": "SSR"
+  },
+  {
+    "id": "accessory-ssr",
+    "type": "accessory",
+    "rarity": "SSR",
+    "name": "金の指輪",
+    "dpsBonus": 1000,
+    "dpsMultiplier": 1.2,
+    "sellPrice": 2000,
+    "synthesisTargetRarity": "UR"
+  },
+  {
+    "id": "accessory-ur",
+    "type": "accessory",
+    "rarity": "UR",
+    "name": "神の指輪",
+    "dpsBonus": 5000,
+    "dpsMultiplier": 1.5,
+    "sellPrice": 10000
+  }
+]

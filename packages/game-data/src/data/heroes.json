@@ -1,0 +1,194 @@
+[
+  {
+    "id": "h1",
+    "name": "Ignis",
+    "rarity": "N",
+    "faction": "Fire",
+    "classType": "Warrior",
+    "baseDps": 10,
+    "emoji": "🤺",
+    "passive": {
+      "id": "h1-passive",
+      "name": "熱血",
+      "kind": "selfCrit",
+      "value": 0.1,
+      "description": "自身のクリティカル率+10%"
+    }
+  },
+  {
+    "id": "h2",
+    "name": "Aqua",
+    "rarity": "N",
+    "faction": "Water",
+    "classType": "Mage",
+    "baseDps": 10,
+    "emoji": "💧",
+    "passive": {
+      "id": "h2-passive",
+      "name": "水の加護",
+      "kind": "factionBuff",
+      "value": 1.05,
+      "description": "味方の水属性DPS+5%"
+    }
+  },
+  {
+    "id": "h3",
+    "name": "Flora",
+    "rarity": "N",
+    "faction": "Nature",
+    "classType": "Archer",
+    "baseDps": 10,
+    "emoji": "🏹",
+    "passive": {
+      "id": "h3-passive",
+      "name": "自然の息吹",
+      "kind": "adjacentBuff",
+      "value": 1.05,
+      "description": "隣接する味方のDPS+5%"
+    }
+  },
+  {
+    "id": "h4",
+    "name": "Ember",
+    "rarity": "R",
+    "faction": "Fire",
+    "classType": "Archer",
+    "baseDps": 25,
+    "emoji": "🔥",
+    "passive": {
+      "id": "h4-passive",
+      "name": "炎の矢",
+      "kind": "classBuff",
+      "value": 1.1,
+      "description": "味方のアーチャーDPS+10%"
+    }
+  },
+  {
+    "id": "h5",
+    "name": "Tide",
+    "rarity": "R",
+    "faction": "Water",
+    "classType": "Warrior",
+    "baseDps": 25,
+    "emoji": "🌊",
+    "passive": {
+      "id": "h5-passive",
+      "name": "荒波",
+      "kind": "selfCrit",
+      "value": 0.2,
+      "description": "自身のクリティカル率+20%"
+    }
+  },
+  {
+    "id": "h6",
+    "name": "Thorn",
+    "rarity": "R",
+    "faction": "Nature",
+    "classType": "Mage",
+    "baseDps": 25,
+    "emoji": "🌿",
+    "passive": {
+      "id": "h6-passive",
+      "name": "茨の盾",
+      "kind": "adjacentBuff",
+      "value": 1.1,
+      "description": "隣接する味方のDPS+10%"
+    }
+  },
+  {
+    "id": "h7",
+    "name": "Lumina",
+    "rarity": "SR",
+    "faction": "Light",
+    "classType": "Warrior",
+    "baseDps": 80,
+    "emoji": "✨",
+    "passive": {
+      "id": "h7-passive",
+      "name": "光の導き",
+      "kind": "factionBuff",
+      "value": 1.15,
+      "description": "味方の光属性DPS+15%"
+    }
+  },
+  {
+    "id": "h8",
+    "name": "Umbra",
+    "rarity": "SR",
+    "faction": "Dark",
+    "classType": "Mage",
+    "baseDps": 80,
+    "emoji": "🌑",
+    "passive": {
+      "id": "h8-passive",
+      "name": "闇の知識",
+      "kind": "classBuff",
+      "value": 1.15,
+      "description": "味方のメイジDPS+15%"
+    }
+  },
+  {
+    "id": "h9",
+    "name": "Blaze",
+    "rarity": "SSR",
+    "faction": "Fire",
+    "classType": "Mage",
+    "baseDps": 300,
+    "emoji": "🌋",
+    "passive": {
+      "id": "h9-passive",
+      "name": "爆炎",
+      "kind": "adjacentBuff",
+      "value": 1.2,
+      "description": "隣接する味方のDPS+20%"
+    }
+  },
+  {
+    "id": "h10",
+    "name": "Frost",
+    "rarity": "SSR",
+    "faction": "Water",
+    "classType": "Archer",
+    "baseDps": 300,
+    "emoji": "❄️",
+    "passive": {
+      "id": "h10-passive",
+      "name": "絶対零度",
+      "kind": "selfCrit",
+      "value": 0.3,
+      "description": "自身のクリティカル率+30%"
+    }
+  },
+  {
+    "id": "h11",
+    "name": "Solaris",
+    "rarity": "UR",
+    "faction": "Light",
+    "classType": "Mage",
+    "baseDps": 1500,
+    "emoji": "☀️",
+    "passive": {
+      "id": "h11-passive",
+      "name": "太陽の恵み",
+      "kind": "factionBuff",
+      "value": 1.3,
+      "description": "味方の光属性DPS+30%"
+    }
+  },
+  {
+    "id": "h12",
+    "name": "Void",
+    "rarity": "UR",
+    "faction": "Dark",
+    "classType": "Warrior",
+    "baseDps": 1500,
+    "emoji": "🌌",
+    "passive": {
+      "id": "h12-passive",
+      "name": "虚無の力",
+      "kind": "classBuff",
+      "value": 1.3,
+      "description": "味方のウォリアーDPS+30%"
+    }
+  }
+]

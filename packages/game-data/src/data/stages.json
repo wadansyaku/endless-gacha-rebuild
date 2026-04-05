@@ -1,0 +1,27 @@
+{
+  "bossInterval": 10,
+  "bossTimerSeconds": 30,
+  "hpBase": 50,
+  "hpGrowth": 1.2,
+  "bossMultiplier": 5,
+  "enemyElements": [
+    "Dark",
+    "Nature",
+    "Nature",
+    "Nature",
+    "Dark",
+    "Fire",
+    "Dark",
+    "Dark",
+    "Fire",
+    "Fire",
+    "Dark",
+    "Light",
+    "Dark",
+    "Light"
+  ],
+  "bossElements": ["Fire", "Nature", "Water", "Fire", "Dark"],
+  "bossAffixes": ["ARMORED", "BERSERK", "EVASIVE", "REGEN"],
+  "enemyTraits": ["NONE", "ARMORED", "RESISTANT", "EVASIVE"],
+  "offlineCapMinutes": 1440
+}

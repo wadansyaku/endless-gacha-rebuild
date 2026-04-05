@@ -1,0 +1,42 @@
+[
+  {
+    "id": "exp_gold_1",
+    "name": "ゴブリンの金鉱",
+    "description": "ゴールドを採掘します。",
+    "durationMinutes": 1,
+    "unlockStage": 1,
+    "reward": { "kind": "gold", "amount": 500 }
+  },
+  {
+    "id": "exp_gem_1",
+    "name": "水晶の洞窟",
+    "description": "ジェムを発掘します。",
+    "durationMinutes": 5,
+    "unlockStage": 5,
+    "reward": { "kind": "gems", "amount": 50 }
+  },
+  {
+    "id": "exp_shard_1",
+    "name": "古代の遺跡",
+    "description": "遺物の欠片を探索します。",
+    "durationMinutes": 15,
+    "unlockStage": 15,
+    "reward": { "kind": "artifactShards", "amount": 2 }
+  },
+  {
+    "id": "exp_gold_2",
+    "name": "ドラゴンの巣",
+    "description": "大量のゴールドを狙います。",
+    "durationMinutes": 30,
+    "unlockStage": 30,
+    "reward": { "kind": "gold", "amount": 20000 }
+  },
+  {
+    "id": "exp_gem_2",
+    "name": "星降る山頂",
+    "description": "大量のジェムを祈願します。",
+    "durationMinutes": 60,
+    "unlockStage": 60,
+    "reward": { "kind": "gems", "amount": 500 }
+  }
+]
