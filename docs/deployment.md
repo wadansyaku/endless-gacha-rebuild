@@ -35,11 +35,18 @@
 ## First Deploy
 
 - Cloudflare Pages project name は `endless-gacha-rebuild`
-- 初回は local build を `wrangler pages deploy apps/web/dist --project-name endless-gacha-rebuild --branch main` で出す
-- GitHub 連携後は Pages 側の production branch を `main` に揃える
+- 初回 bootstrap は GitHub source を付けて Pages project を作る
+- その後の one-off deploy として `wrangler pages deploy apps/web/dist --project-name endless-gacha-rebuild --branch main` を使える
+- production branch は `main`
 
 ## GitHub Integration
 
 - `projects/endless-gacha` を独立 git repo として扱う
 - GitHub repo は `wadansyaku/endless-gacha-rebuild` を使う
-- 初回 push 後に Pages project と紐付ける
+- 初回 push 後、Pages project を GitHub source `wadansyaku/endless-gacha-rebuild` として作成済み
+
+## Current Status
+
+- GitHub: [wadansyaku/endless-gacha-rebuild](https://github.com/wadansyaku/endless-gacha-rebuild)
+- Pages production domain: [endless-gacha-rebuild.pages.dev](https://endless-gacha-rebuild.pages.dev)
+- Latest deployment URL: [0045a579.endless-gacha-rebuild.pages.dev](https://0045a579.endless-gacha-rebuild.pages.dev)

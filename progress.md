@@ -38,3 +38,15 @@ Original prompt: 残っていることを実装しつつ、現状を深く分析
   - deploy 方針を `docs/deployment.md` に追加
   - GitHub は `projects/endless-gacha` を独立 repo として接続する前提に切り替え
   - 実装は `Progression` の mission 圧縮と nav prefetch を優先する
+
+- 追加実装:
+  - `Progression` で mission を claimable / ongoing / done で圧縮表示
+  - expedition は bench 個体を選んで dispatch できるように改善
+  - route module を分離し、nav hover / focus で lazy route を preload
+  - `apps/web/public/_redirects` を追加して Pages の SPA fallback を固定
+
+- GitHub / Cloudflare:
+  - `wadansyaku/endless-gacha-rebuild` へ `main` を初回 push
+  - Cloudflare Pages project `endless-gacha-rebuild` を GitHub source 付きで作成
+  - manual deploy を 1 回実行し、`https://0045a579.endless-gacha-rebuild.pages.dev` を取得
+  - production domain `https://endless-gacha-rebuild.pages.dev` が `HTTP 200` を返すことを確認
