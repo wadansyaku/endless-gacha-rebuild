@@ -50,3 +50,24 @@ Original prompt: 残っていることを実装しつつ、現状を深く分析
   - Cloudflare Pages project `endless-gacha-rebuild` を GitHub source 付きで作成
   - manual deploy を 1 回実行し、`https://0045a579.endless-gacha-rebuild.pages.dev` を取得
   - production domain `https://endless-gacha-rebuild.pages.dev` が `HTTP 200` を返すことを確認
+
+- UI / UX 再設計:
+  - `game-design.md` と `current-state-review.md` に「dashboard ではなく game HUD に寄せる」方針を追記
+  - `AppShell` を header + equal-weight cards から、resource HUD / command dock / signal rail 構成へ変更
+  - `Battle` は `Frontline` 面として再設計し、敵状況・前線 3x3・reserve・recovery queue を主従付きで整理
+  - `Summon` は `Recruitment` 面として再設計し、banner ごとの差・費用・排出率・直近獲得を強く可視化
+  - `Progression` は `War Room` として再設計し、urgent / growth / ascension / relay / forge の 5 面に再構成
+  - CTA の費用表示は `packages/game-core` の selector export に寄せ、UI 側で独自計算しないよう調整
+  - `packages/shared` の `EquipmentTierContent` に `synthesisTargetRarity` を追加し、data schema と型を整合
+
+- 追加検証:
+  - `pnpm lint`, `pnpm typecheck`, `pnpm test:unit`, `pnpm build`, `pnpm test:e2e` は再度すべて成功
+  - manual playtest は `http://127.0.0.1:4175` で実施
+  - 証跡:
+    - `output/playtest-manual/battle-frontline-redesign-20260406.png`
+    - `output/playtest-manual/battle-midgame-redesign-20260406.png`
+    - `output/playtest-manual/summon-redesign-after-pull-20260406.png`
+    - `output/playtest-manual/progression-redesign-midgame-20260406.png`
+    - `output/playtest-manual/ui-redesign-playtest-20260406.json`
+  - midgame preset 後の snapshot は `stage 35`, `benchCount 4`, `inventoryCount 4`, `overflowCount 0`, `expeditionCount 2`
+  - 10 pull 後の snapshot は `benchCount 8`, `overflowCount 6` となり、recovery queue への退避導線を画面上で確認

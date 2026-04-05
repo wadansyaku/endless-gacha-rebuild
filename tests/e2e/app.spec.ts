@@ -8,8 +8,8 @@ test.beforeEach(async ({ page }) => {
 
 test("battle shell loads", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Endless Gacha" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Tap Attack" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Frontline" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Pulse Attack" })).toBeVisible();
 });
 
 test("invalid local save surfaces a visible notice instead of silently failing", async ({ page }) => {
@@ -22,8 +22,8 @@ test("invalid local save surfaces a visible notice instead of silently failing",
 
 test("summon route shows the latest pull result", async ({ page }) => {
   await page.goto("/summon");
-  await page.getByRole("button", { name: "1 Pull" }).first().click();
-  await expect(page.getByRole("heading", { name: "Latest Pull Result" })).toBeVisible();
+  await page.getByRole("button", { name: /1 Pull/ }).first().click();
+  await expect(page.getByRole("heading", { name: "Acquisition Feed" })).toBeVisible();
   await expect(page.getByText(/instance /)).toBeVisible();
 });
 

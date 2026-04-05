@@ -101,3 +101,26 @@ single-player 向け idle / gacha RPG である。
 - battle を最短導線に置く
 - progress 系は情報密度高めでも操作を単純に保つ
 - cloud sync は確認付き
+
+## UI / HUD 再設計方針
+
+- UI は「SaaS ダッシュボード」ではなく「縦持ちのゲーム HUD」として組む
+- 常設情報は上部 HUD と小さな signal rail に寄せ、中央のプレイフィールを優先する
+- 各 route は equal-weight な複数カードではなく、1 つの主画面と 1 つの補助面を持つ
+- 長文説明や低頻度操作は drawer / fold / compact list に逃がし、初期表示で全部開かない
+- CTA は `packages/game-core` の selector を使って「必要資源」「次に増える値」「押せない理由」を明示する
+
+## Route ごとの役割
+
+- Battle
+  - 主画面。enemy / board / reserve を最優先で見せる
+  - onboarding も battle の中で完結させる
+- Summon
+  - 報酬演出面。banner の差、消費資源、直近獲得を強く見せる
+- Progression
+  - 管理画面ではなく war room として扱う
+  - 「今回収できるもの」「次に伸ばす系統」「物流」を分離する
+- Collection
+  - codex / awakening の保管庫として静的に見せる
+- Social / Settings
+  - 補助機能。戦闘導線より前に出しすぎない

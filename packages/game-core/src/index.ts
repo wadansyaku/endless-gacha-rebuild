@@ -175,15 +175,20 @@ const buildBannerRates = (
   return normalizeRates(rates);
 };
 
-const getNormalBannerDiscount = (save: VersionedSaveEnvelope): number =>
+export const getNormalBannerDiscount = (save: VersionedSaveEnvelope): number =>
   1 - (save.snapshot.meta.talentLevels.gacha_discount ?? 0) * 0.02;
 
 const getUpgradeValue = (level: number, step: number): number =>
   1 + Math.max(0, level) * step;
 
-const getUpgradeCost = (level: number): number => Math.floor(100 * Math.pow(1.5, level - 1));
+export const getUpgradeEffect = (
+  kind: keyof GameSnapshot["meta"]["upgrades"],
+  level: number
+): number => getUpgradeValue(level, kind === "tapDamage" ? 0.25 : 0.2);
 
-const getHeroLevelUpCost = (
+export const getUpgradeCost = (level: number): number => Math.floor(100 * Math.pow(1.5, level - 1));
+
+export const getHeroLevelUpCost = (
   save: VersionedSaveEnvelope,
   content: GameContent,
   heroInstance: HeroInstance
@@ -206,7 +211,7 @@ const getHeroLevelUpCost = (
   return cost;
 };
 
-const getArtifactUpgradeCost = (save: VersionedSaveEnvelope, content: GameContent, artifactId: string): number => {
+export const getArtifactUpgradeCost = (save: VersionedSaveEnvelope, content: GameContent, artifactId: string): number => {
   const artifact = content.artifacts.find((entry) => entry.id === artifactId);
   if (!artifact) {
     throw new Error(`Unknown artifact: ${artifactId}`);
@@ -215,7 +220,7 @@ const getArtifactUpgradeCost = (save: VersionedSaveEnvelope, content: GameConten
   return Math.floor(artifact.baseCost * Math.pow(artifact.costMultiplier, level));
 };
 
-const getTalentUpgradeCost = (save: VersionedSaveEnvelope, content: GameContent, talentId: string): number => {
+export const getTalentUpgradeCost = (save: VersionedSaveEnvelope, content: GameContent, talentId: string): number => {
   const talent = content.talents.find((entry) => entry.id === talentId);
   if (!talent) {
     throw new Error(`Unknown talent: ${talentId}`);
@@ -224,7 +229,7 @@ const getTalentUpgradeCost = (save: VersionedSaveEnvelope, content: GameContent,
   return Math.floor(talent.baseCost * Math.pow(talent.costMultiplier, level));
 };
 
-const getFormationUpgradeCost = (
+export const getFormationUpgradeCost = (
   save: VersionedSaveEnvelope,
   content: GameContent,
   formationId: string
@@ -236,6 +241,33 @@ const getFormationUpgradeCost = (
   const level = save.snapshot.meta.formationLevels[formationId] ?? 0;
   const base = formation.unlockCost ?? 500;
   return level === 0 ? base : Math.floor(base * (level + 1));
+};
+
+export const getBannerPullCost = (
+  save: VersionedSaveEnvelope,
+  content: GameContent,
+  bannerId: string,
+  count: number
+): number => {
+  const banner = content.banners.find((entry) => entry.id === bannerId);
+  if (!banner) {
+    throw new Error(`Unknown banner definition: ${bannerId}`);
+  }
+  const costPerPull =
+    banner.kind === "normal" ? Math.max(1, Math.floor(banner.cost * getNormalBannerDiscount(save))) : banner.cost;
+  return costPerPull * Math.max(1, count);
+};
+
+export const getBannerRates = (
+  save: VersionedSaveEnvelope,
+  content: GameContent,
+  bannerId: string
+): Record<Rarity, number> => {
+  const banner = content.banners.find((entry) => entry.id === bannerId);
+  if (!banner) {
+    throw new Error(`Unknown banner definition: ${bannerId}`);
+  }
+  return buildBannerRates(save, banner);
 };
 
 const nextRoll = (save: VersionedSaveEnvelope): [number, VersionedSaveEnvelope] => {

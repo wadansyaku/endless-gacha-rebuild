@@ -60,6 +60,14 @@
 - core test も save migration、expedition ownership、equipment overflow の不変条件を踏めていない
 - 画面から遊べるようにするだけでなく、その導線を自動化できる状態にしておく必要がある
 
+### 9. 画面がゲーム HUD ではなく dashboard に寄りすぎている
+
+- `Shell` の header / nav / sidebar / main が全部同じ重さで見え、主画面が立っていない
+- Battle / Summon / Progression も同じ card 文法に揃いすぎて、画面ごとの気分転換と役割差が弱い
+- 重要操作が row の右端ボタンに吸われ、reward や urgency よりも管理感が勝っている
+- mission と expedition は存在しているが、「今やるべきこと」の面として収束していない
+- cost や不足理由が押すまで分からず、手触りが command UI ではなく事務 UI に見える
+
 ## すぐ直す価値が高い方針
 
 - battle 画面に onboarding と auto-deploy 導線を足す
@@ -69,6 +77,9 @@
 - save 読込は strict parse + migration にし、失敗時は黙って握りつぶさない
 - 派遣は bench の `HeroInstance` を所有し、帰還時に bench / overflow へ戻す
 - summon 結果と conflict の判断軸を UI 上で明示する
+- HUD は上部 resource strip + 下部 command dock + 小さな signal rail に寄せる
+- Progression は `urgent / growth / logistics` の 3 面に分け、mission を文章一覧のまま置かない
+- CTA は `packages/game-core` の cost selector を通し、押せない理由を補助文で返す
 
 ## 今回の実装で確認したいこと
 
@@ -79,7 +90,7 @@
 
 ## 次に着手する優先項目
 
-- `Progression` の mission 密度を落とし、claimable / ongoing / complete の優先順で読めるようにする
-- expedition を「最初の 1 体自動選択」ではなく、bench 個体から選べるようにする
-- lazy route の初回遷移で見える `Loading` を、preload と軽量 fallback で目立たなくする
-- Cloudflare Pages の deploy 導線を repo 内 docs と static fallback まで含めて固定する
+- Battle / Summon / Progression の visual language を分岐させ、route ごとの役割を画面で分かるようにする
+- resource / stage / ready state を header ではなく HUD 化し、現在地を常時追えるようにする
+- Growth 系 CTA に cost / next gain / disabled reason を追加し、押す前に判断できるようにする
+- preloading は全 route 一括ではなく、隣接導線中心の先読みに絞る

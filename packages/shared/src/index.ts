@@ -112,6 +112,7 @@ export type EquipmentTierContent = {
   dpsBonus: number;
   dpsMultiplier: number;
   sellPrice: number;
+  synthesisTargetRarity?: Rarity | undefined;
 };
 
 export type StageRuleContent = {
