@@ -1,17 +1,14 @@
 import {
   createContext,
-  startTransition,
   useContext,
   useEffect,
   useEffectEvent,
   useRef,
   useState,
+  useSyncExternalStore,
   type PropsWithChildren
 } from "react";
-import {
-  LOCAL_SAVE_STORAGE_KEY,
-  type GameContent
-} from "@endless-gacha/shared";
+import { LOCAL_SAVE_STORAGE_KEY, type GameContent } from "@endless-gacha/shared";
 import { gameContent } from "@endless-gacha/game-data";
 import {
   advanceByDuration,
@@ -31,10 +28,10 @@ import {
   dispatchExpedition,
   dismissTutorial,
   equipItem,
-  grantPlaytestResources,
   getBattleSummary,
   getCollectionEntries,
   getHeroPlacements,
+  grantPlaytestResources,
   levelHero,
   listMissionViews,
   moveHero,
@@ -42,8 +39,8 @@ import {
   pullGacha,
   sellEquipment,
   serializeSave,
-  setPlaytestStage,
   setActiveFormation,
+  setPlaytestStage,
   synthesizeEquipment,
   tapEnemy,
   toggleAutoSellCommon,
@@ -134,6 +131,12 @@ type GameContextValue = GameState & {
   actions: GameActions;
 };
 
+type GameStore = {
+  getState: () => GameState;
+  setState: (updater: GameState | ((current: GameState) => GameState)) => void;
+  subscribe: (listener: () => void) => () => void;
+};
+
 const MAX_EVENT_LINES = 12;
 
 declare global {
@@ -152,7 +155,8 @@ declare global {
   }
 }
 
-const GameContext = createContext<GameContextValue | null>(null);
+const GameStoreContext = createContext<GameStore | null>(null);
+const GameActionsContext = createContext<GameActions | null>(null);
 
 const appendEvents = (current: string[], incoming: string[]): string[] => {
   const next = [...incoming.filter(Boolean), ...current];
@@ -273,36 +277,58 @@ const readFirebaseUserSummary = async (): Promise<FirebaseUserSummary | null> =>
   };
 };
 
+const createGameStore = (initialState: GameState): GameStore => {
+  let currentState = initialState;
+  const listeners = new Set<() => void>();
+
+  return {
+    getState: () => currentState,
+    setState: (updater) => {
+      const nextState =
+        typeof updater === "function" ? (updater as (current: GameState) => GameState)(currentState) : updater;
+
+      if (Object.is(nextState, currentState)) {
+        return;
+      }
+
+      currentState = nextState;
+      listeners.forEach((listener) => listener());
+    },
+    subscribe: (listener) => {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    }
+  };
+};
+
 export function GameProvider({ children }: PropsWithChildren) {
-  const [state, setState] = useState<GameState>(createInitialState);
-  const saveRef = useRef(state.save);
-
-  useEffect(() => {
-    saveRef.current = state.save;
-  }, [state.save]);
-
-  useEffect(() => {
-    window.localStorage.setItem(LOCAL_SAVE_STORAGE_KEY, serializeSave(state.save));
-  }, [state.save]);
+  const [store] = useState(() => createGameStore(createInitialState()));
+  const saveRef = useRef(store.getState().save);
 
   const patchState = (patch: Partial<GameState>) => {
-    startTransition(() => {
-      setState((current) => ({
-        ...current,
-        ...patch
-      }));
-    });
+    store.setState((current) => ({
+      ...current,
+      ...patch
+    }));
+  };
+
+  const persistSave = (save: VersionedSaveEnvelope) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.localStorage.setItem(LOCAL_SAVE_STORAGE_KEY, serializeSave(save));
   };
 
   const commitSave = (save: VersionedSaveEnvelope, events: string[]) => {
     saveRef.current = save;
-    startTransition(() => {
-      setState((current) => ({
-        ...current,
-        save,
-        events: appendEvents(current.events, events)
-      }));
-    });
+    persistSave(save);
+    store.setState((current) => ({
+      ...current,
+      save,
+      events: appendEvents(current.events, events)
+    }));
   };
 
   const commitResult = <TPayload,>(result: CommandResult<TPayload>): TPayload | undefined => {
@@ -359,10 +385,10 @@ export function GameProvider({ children }: PropsWithChildren) {
     return () => {
       window.clearInterval(handle);
     };
-  }, []);
+  }, [store]);
 
   useEffect(() => {
-    if (!state.cloudEnabled) {
+    if (!store.getState().cloudEnabled) {
       return;
     }
 
@@ -388,7 +414,8 @@ export function GameProvider({ children }: PropsWithChildren) {
           return;
         }
 
-        patchState({
+        store.setState((current) => ({
+          ...current,
           user: currentUser,
           leaderboard,
           conflict: remote
@@ -397,21 +424,22 @@ export function GameProvider({ children }: PropsWithChildren) {
                 recommended: compareSaveFreshness(saveRef.current, documentToSave(remote)).recommended
               }
             : null
-        });
+        }));
       } catch (error) {
         if (cancelled) {
           return;
         }
-        patchState({
+        store.setState((current) => ({
+          ...current,
           cloudError: error instanceof Error ? error.message : "クラウド状態の復元に失敗しました"
-        });
+        }));
       }
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [state.cloudEnabled]);
+  }, [store]);
 
   useEffect(() => {
     window.render_game_to_text = () => renderGameToText(saveRef.current);
@@ -439,7 +467,7 @@ export function GameProvider({ children }: PropsWithChildren) {
   const runAtNow = <TPayload,>(command: (save: VersionedSaveEnvelope, now: number) => CommandResult<TPayload>) =>
     commitResult(command(saveRef.current, Date.now()));
 
-  const actions: GameActions = {
+  const [actions] = useState<GameActions>(() => ({
     tapEnemy: () => {
       runAtNow((save, now) => tapEnemy(save, gameContent, now));
     },
@@ -601,7 +629,8 @@ export function GameProvider({ children }: PropsWithChildren) {
     },
     uploadLocalSave: async () => {
       const firebaseAdapter = await loadFirebaseAdapter();
-      const currentUser = state.user ?? (await readFirebaseUserSummary());
+      const currentState = store.getState();
+      const currentUser = currentState.user ?? (await readFirebaseUserSummary());
       if (!firebaseAdapter || !currentUser) {
         patchState({ cloudError: "ログインしていません" });
         return;
@@ -631,7 +660,8 @@ export function GameProvider({ children }: PropsWithChildren) {
     },
     downloadCloudSave: async () => {
       const firebaseAdapter = await loadFirebaseAdapter();
-      const currentUser = state.user ?? (await readFirebaseUserSummary());
+      const currentState = store.getState();
+      const currentUser = currentState.user ?? (await readFirebaseUserSummary());
       if (!firebaseAdapter || !currentUser) {
         patchState({ cloudError: "ログインしていません" });
         return;
@@ -640,7 +670,7 @@ export function GameProvider({ children }: PropsWithChildren) {
       patchState({ cloudBusy: true, cloudError: null });
       try {
         const remote =
-          state.conflict?.remote ?? (await firebaseAdapter.loadGame<GameSnapshot>(currentUser.uid));
+          store.getState().conflict?.remote ?? (await firebaseAdapter.loadGame<GameSnapshot>(currentUser.uid));
         if (!remote) {
           patchState({ cloudBusy: false, cloudError: "クラウドセーブが見つかりません" });
           return;
@@ -687,25 +717,100 @@ export function GameProvider({ children }: PropsWithChildren) {
     dismissConflict: () => {
       patchState({ conflict: null });
     }
-  };
+  }));
 
-  const contextValue: GameContextValue = {
-    ...state,
-    content: gameContent,
-    battle: getBattleSummary(state.save, gameContent),
-    missions: listMissionViews(state.save, gameContent, state.save.lastProcessedAt),
-    collection: getCollectionEntries(state.save, gameContent),
-    heroPlacements: getHeroPlacements(state.save, gameContent),
-    actions
-  };
-
-  return <GameContext.Provider value={contextValue}>{children}</GameContext.Provider>;
+  return (
+    <GameStoreContext.Provider value={store}>
+      <GameActionsContext.Provider value={actions}>{children}</GameActionsContext.Provider>
+    </GameStoreContext.Provider>
+  );
 }
 
-export const useGame = (): GameContextValue => {
-  const context = useContext(GameContext);
-  if (!context) {
-    throw new Error("useGame must be used within GameProvider");
+const useGameStore = (): GameStore => {
+  const store = useContext(GameStoreContext);
+  if (!store) {
+    throw new Error("Game store is not available");
   }
-  return context;
+  return store;
+};
+
+export const useGameState = <T,>(selector: (state: GameState) => T): T => {
+  const store = useGameStore();
+  return useSyncExternalStore(
+    store.subscribe,
+    () => selector(store.getState()),
+    () => selector(store.getState())
+  );
+};
+
+export const useGameActions = (): GameActions => {
+  const actions = useContext(GameActionsContext);
+  if (!actions) {
+    throw new Error("Game actions are not available");
+  }
+  return actions;
+};
+
+export const useGameContent = (): GameContent => gameContent;
+
+export const useGameSave = (): VersionedSaveEnvelope => useGameState((state) => state.save);
+
+export const useGameEvents = (): string[] => useGameState((state) => state.events);
+
+export const useGameBattle = () => {
+  const content = useGameContent();
+  const save = useGameSave();
+  return getBattleSummary(save, content);
+};
+
+export const useGameMissions = () => {
+  const content = useGameContent();
+  const save = useGameSave();
+  return listMissionViews(save, content, save.lastProcessedAt);
+};
+
+export const useGameCollection = () => {
+  const content = useGameContent();
+  const save = useGameSave();
+  return getCollectionEntries(save, content);
+};
+
+export const useGameHeroPlacements = () => {
+  const content = useGameContent();
+  const save = useGameSave();
+  return getHeroPlacements(save, content);
+};
+
+export const useGame = (): GameContextValue => {
+  const content = useGameContent();
+  const actions = useGameActions();
+  const save = useGameSave();
+  const events = useGameEvents();
+  const saveNotice = useGameState((state) => state.saveNotice);
+  const lastGachaResult = useGameState((state) => state.lastGachaResult);
+  const cloudEnabled = useGameState((state) => state.cloudEnabled);
+  const cloudBusy = useGameState((state) => state.cloudBusy);
+  const cloudError = useGameState((state) => state.cloudError);
+  const user = useGameState((state) => state.user);
+  const leaderboard = useGameState((state) => state.leaderboard);
+  const conflict = useGameState((state) => state.conflict);
+
+  return {
+    save,
+    events,
+    saveNotice,
+    lastGachaResult,
+    cloudEnabled,
+    cloudBusy,
+    cloudError,
+    user,
+    leaderboard,
+    conflict,
+    content,
+    battle: getBattleSummary(save, content),
+    missions: listMissionViews(save, content, save.lastProcessedAt),
+    collection: getCollectionEntries(save, content),
+    heroPlacements: getHeroPlacements(save, content),
+    actions
+  };
 };

@@ -49,4 +49,4 @@
 
 - GitHub: [wadansyaku/endless-gacha-rebuild](https://github.com/wadansyaku/endless-gacha-rebuild)
 - Pages production domain: [endless-gacha-rebuild.pages.dev](https://endless-gacha-rebuild.pages.dev)
-- Latest deployment URL: [02f49b70.endless-gacha-rebuild.pages.dev](https://02f49b70.endless-gacha-rebuild.pages.dev)
+- Latest deployment URL: [112ddfaa.endless-gacha-rebuild.pages.dev](https://112ddfaa.endless-gacha-rebuild.pages.dev)

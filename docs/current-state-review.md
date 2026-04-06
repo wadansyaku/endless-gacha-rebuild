@@ -68,6 +68,18 @@
 - mission と expedition は存在しているが、「今やるべきこと」の面として収束していない
 - cost や不足理由が押すまで分からず、手触りが command UI ではなく事務 UI に見える
 
+### 10. `GameProvider` の単一 context が再描画境界を壊している
+
+- `save`, `cloud`, `events`, `lastGachaResult` を 1 つの value に束ねているため、どの field が変わっても購読側が全更新される
+- active route は battle tick によって 1 秒ごとに再描画され、必要ない cloud state 変更でも巻き込まれる
+- V1 の規模なら動くが、今後 effect / animation / dense lists が増えるほど無駄な render が表面化する
+
+### 11. `War Room` は整理されたが、まだ disclosure が弱い
+
+- section を全部同時表示しているため、priority は改善しても route 全体の高さは依然として大きい
+- mobile では `urgent` を見たいだけでも `growth` と `forge` まで同時に読む必要がある
+- 「今処理する面」「育成を触る面」「物流を触る面」を切り替える command 面にした方がよい
+
 ## すぐ直す価値が高い方針
 
 - battle 画面に onboarding と auto-deploy 導線を足す
@@ -80,6 +92,8 @@
 - HUD は上部 resource strip + 下部 command dock + 小さな signal rail に寄せる
 - Progression は `urgent / growth / logistics` の 3 面に分け、mission を文章一覧のまま置かない
 - CTA は `packages/game-core` の cost selector を通し、押せない理由を補助文で返す
+- state 供給は selector ベースに寄せ、route が full context を掴まないようにする
+- `War Room` は tab / segmented control で section を切り替え、常時全展開しない
 
 ## 今回の実装で確認したいこと
 
@@ -94,3 +108,5 @@
 - resource / stage / ready state を header ではなく HUD 化し、現在地を常時追えるようにする
 - Growth 系 CTA に cost / next gain / disabled reason を追加し、押す前に判断できるようにする
 - preloading は全 route 一括ではなく、隣接導線中心の先読みに絞る
+- `GameProvider` を external store + selector hook に変え、`useGame()` の full subscribe をやめる
+- `Progression` に section 切替を入れ、mobile で 1 画面 1 目的へ寄せる

@@ -70,4 +70,19 @@ Original prompt: 残っていることを実装しつつ、現状を深く分析
     - `output/playtest-manual/progression-redesign-midgame-20260406.png`
     - `output/playtest-manual/ui-redesign-playtest-20260406.json`
   - midgame preset 後の snapshot は `stage 35`, `benchCount 4`, `inventoryCount 4`, `overflowCount 0`, `expeditionCount 2`
-  - 10 pull 後の snapshot は `benchCount 8`, `overflowCount 6` となり、recovery queue への退避導線を画面上で確認
+- 10 pull 後の snapshot は `benchCount 8`, `overflowCount 6` となり、recovery queue への退避導線を画面上で確認
+
+- 深掘り改善:
+  - `current-state-review.md` と `game-design.md` に、`GameProvider` の単一 context と `War Room` の disclosure 不足を追加で記録
+  - `apps/web/src/lib/game-store.tsx` を external store + selector hook 構成へ変更し、`useGame()` に全断面 subscribe しなくても済む導線を追加
+  - route 側は `useGameState`, `useGameSave`, `useGameActions`, `useGameBattle`, `useGameMissions`, `useGameHeroPlacements` へ分割して読ませるよう変更
+  - `Progression` は section 全展開をやめ、`Urgent / Growth / Logistics / Archive` を tab 切替する command 面へ再設計
+  - `styles.css` に section selector の visual language を追加
+
+- 深掘り検証:
+  - `pnpm lint`, `pnpm typecheck`, `pnpm test:unit`, `pnpm test:e2e`, `pnpm build` は再度すべて成功
+  - `output/playtest-manual/progression-urgent-section-20260406.png`
+  - `output/playtest-manual/progression-growth-section-20260406.png`
+  - `output/playtest-manual/progression-logistics-section-20260406.png`
+  - `output/playtest-manual/progression-sections-playtest-20260406.json`
+  - section 切替後に `Urgent Queue`, `Growth Tracks`, `Relay Bay / Forge Deck` がそれぞれ単独面として見えることを確認

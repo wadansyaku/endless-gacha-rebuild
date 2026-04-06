@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Button, Card, PanelList, PanelRow } from "@endless-gacha/ui";
 import { serializeSave } from "@endless-gacha/game-core";
-import { useGame } from "../lib/game-store";
+import { useGameActions, useGameContent, useGameSave, useGameState } from "../lib/game-store";
 import { formatTimestamp } from "../lib/format";
 
 export default function SettingsRoute() {
-  const { save, saveNotice, cloudError, content, actions } = useGame();
+  const save = useGameSave();
+  const saveNotice = useGameState((state) => state.saveNotice);
+  const cloudError = useGameState((state) => state.cloudError);
+  const content = useGameContent();
+  const actions = useGameActions();
   const [saveText, setSaveText] = useState("");
   const [isSaveEditorDirty, setIsSaveEditorDirty] = useState(false);
   const [stageInput, setStageInput] = useState("");

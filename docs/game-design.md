@@ -124,3 +124,15 @@ single-player 向け idle / gacha RPG である。
   - codex / awakening の保管庫として静的に見せる
 - Social / Settings
   - 補助機能。戦闘導線より前に出しすぎない
+
+## UI State 供給原則
+
+- React route は `full game context` を直接読むのではなく selector hook 経由で必要断面だけを購読する
+- `actions` と `content` は安定参照に寄せ、battle tick ごとに再生成しない
+- derived view は route 内で必要なものだけ計算し、未表示 section の list を常時 mount しない
+
+## Progression Disclosure
+
+- `War Room` は 1 枚の長い管理画面ではなく、`Urgent`, `Growth`, `Logistics`, `Archive` を切り替える command 面にする
+- 初期表示は `Urgent`
+- mobile では 1 section だけを見せ、desktop でも同時全展開を避ける

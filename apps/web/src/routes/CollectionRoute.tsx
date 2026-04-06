@@ -1,9 +1,12 @@
 import { useDeferredValue } from "react";
 import { Button, Card, PanelList, PanelRow } from "@endless-gacha/ui";
-import { useGame } from "../lib/game-store";
+import { useGameActions, useGameCollection, useGameContent, useGameSave } from "../lib/game-store";
 
 export default function CollectionRoute() {
-  const { collection, content, save, actions } = useGame();
+  const collection = useGameCollection();
+  const content = useGameContent();
+  const save = useGameSave();
+  const actions = useGameActions();
   const deferredCollection = useDeferredValue(collection);
 
   return (

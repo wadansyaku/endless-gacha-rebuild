@@ -91,6 +91,7 @@ textarea {
 .eg-toolbar,
 .eg-inline-actions,
 .eg-choice-row,
+.eg-segment-row,
 .eg-layout,
 .eg-section-label,
 .eg-stat-grid,
@@ -268,6 +269,32 @@ textarea {
   color: var(--eg-text);
 }
 
+.eg-segment-row {
+  flex-wrap: wrap;
+}
+
+.eg-segment-button {
+  appearance: none;
+  display: grid;
+  gap: 5px;
+  min-width: 164px;
+  padding: 12px 14px;
+  border: 1px solid rgba(124, 175, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--eg-text);
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.eg-segment-button.is-active {
+  border-color: var(--eg-line-strong);
+  background:
+    radial-gradient(circle at top left, rgba(119, 228, 255, 0.18), transparent 60%),
+    rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 36px rgba(30, 98, 174, 0.16);
+}
+
 .eg-tab:hover,
 .eg-tab.is-active {
   border-color: var(--eg-line-strong);
@@ -316,6 +343,10 @@ textarea {
 
 .eg-route-stack {
   gap: 20px;
+}
+
+.eg-section-card {
+  min-height: 100%;
 }
 
 .eg-card {
@@ -862,6 +893,10 @@ textarea {
 .eg-note-card {
   min-height: 92px;
   align-content: center;
+}
+
+.eg-section-intro {
+  min-height: auto;
 }
 
 .eg-form-grid,

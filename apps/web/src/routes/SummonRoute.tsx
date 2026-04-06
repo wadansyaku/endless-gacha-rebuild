@@ -1,12 +1,15 @@
 import { Badge, Button, Card, SplitGrid, rarityLabels } from "@endless-gacha/ui";
 import { getBannerPullCost, getBannerRates } from "@endless-gacha/game-core";
-import { useGame } from "../lib/game-store";
+import { useGameActions, useGameContent, useGameSave, useGameState } from "../lib/game-store";
 import { formatNumber } from "../lib/format";
 
 const formatRate = (value: number): string => `${(value * 100).toFixed(value < 0.01 ? 1 : 0)}%`;
 
 export default function SummonRoute() {
-  const { content, save, actions, lastGachaResult } = useGame();
+  const content = useGameContent();
+  const save = useGameSave();
+  const actions = useGameActions();
+  const lastGachaResult = useGameState((state) => state.lastGachaResult);
 
   return (
     <div className="eg-route-stack eg-route-summon">

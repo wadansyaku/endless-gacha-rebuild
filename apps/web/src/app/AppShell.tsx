@@ -1,7 +1,14 @@
 import { Suspense, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { Badge, Card, PanelList, PanelRow, Shell } from "@endless-gacha/ui";
-import { useGame } from "../lib/game-store";
+import {
+  useGameBattle,
+  useGameContent,
+  useGameEvents,
+  useGameMissions,
+  useGameSave,
+  useGameState
+} from "../lib/game-store";
 import { formatNumber } from "../lib/format";
 import { routePreloaders } from "./route-modules";
 
@@ -77,7 +84,14 @@ const getActiveId = (pathname: string): (typeof navItems)[number]["id"] => {
 
 export function AppShell() {
   const location = useLocation();
-  const { battle, content, events, missions, save, cloudEnabled, user, saveNotice } = useGame();
+  const battle = useGameBattle();
+  const content = useGameContent();
+  const events = useGameEvents();
+  const missions = useGameMissions();
+  const save = useGameSave();
+  const cloudEnabled = useGameState((state) => state.cloudEnabled);
+  const user = useGameState((state) => state.user);
+  const saveNotice = useGameState((state) => state.saveNotice);
   const activeId = getActiveId(location.pathname);
   const activeNav = navItems.find((item) => item.id === activeId) ?? navItems[0];
   const boardCount = save.snapshot.roster.board.filter((entry) => entry !== null).length;

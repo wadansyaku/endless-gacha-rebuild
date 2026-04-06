@@ -14,14 +14,24 @@ import {
 } from "@endless-gacha/ui";
 import { getHeroLevelUpCost, getUpgradeCost, getUpgradeEffect } from "@endless-gacha/game-core";
 import { useNavigate } from "react-router-dom";
-import { useGame } from "../lib/game-store";
+import {
+  useGameActions,
+  useGameBattle,
+  useGameContent,
+  useGameHeroPlacements,
+  useGameSave
+} from "../lib/game-store";
 import { formatNumber } from "../lib/format";
 
 const slotLabel = (index: number): string => `Slot ${index + 1}`;
 
 export default function BattleRoute() {
   const navigate = useNavigate();
-  const { battle, content, heroPlacements, save, actions } = useGame();
+  const battle = useGameBattle();
+  const content = useGameContent();
+  const heroPlacements = useGameHeroPlacements();
+  const save = useGameSave();
+  const actions = useGameActions();
   const board = heroPlacements.filter((placement) => placement.slot.area === "board");
   const bench = heroPlacements.filter((placement) => placement.slot.area === "bench");
   const heroById = new Map(content.heroes.map((hero) => [hero.id, hero] as const));

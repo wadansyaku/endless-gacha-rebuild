@@ -1,9 +1,15 @@
 import { Badge, Button, Card, EmptyState, PanelList, PanelRow, SplitGrid } from "@endless-gacha/ui";
-import { useGame } from "../lib/game-store";
+import { useGameActions, useGameState } from "../lib/game-store";
 import { formatTimestamp } from "../lib/format";
 
 export default function SocialRoute() {
-  const { cloudBusy, cloudEnabled, cloudError, conflict, leaderboard, user, actions } = useGame();
+  const actions = useGameActions();
+  const cloudBusy = useGameState((state) => state.cloudBusy);
+  const cloudEnabled = useGameState((state) => state.cloudEnabled);
+  const cloudError = useGameState((state) => state.cloudError);
+  const conflict = useGameState((state) => state.conflict);
+  const leaderboard = useGameState((state) => state.leaderboard);
+  const user = useGameState((state) => state.user);
 
   return (
     <div className="eg-route-stack">
