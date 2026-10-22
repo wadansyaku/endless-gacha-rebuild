@@ -12,9 +12,10 @@
     "pretest:e2e": "playwright install chromium",
     "test:e2e": "playwright test",
     "test": "pnpm run test:unit && pnpm run test:e2e",
-    "build": "pnpm --filter \"./packages/*\" run build && pnpm --filter \"./apps/*\" run build",
+    "build": "node scripts/check-node-security.cjs && pnpm --filter \"./packages/*\" run build && pnpm --filter \"./apps/*\" run build",
     "deploy:pages": "pnpm build && npx wrangler pages deploy apps/web/dist --project-name endless-gacha-rebuild --branch main",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:node-security": "node --test tests/node-security.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

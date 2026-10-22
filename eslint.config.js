@@ -20,6 +20,10 @@ export default tseslint.config(
     ]
   },
   js.configs.recommended,
+  {
+    files: ["scripts/check-node-security.cjs", "tests/node-security.test.mjs"],
+    languageOptions: { globals: { require: "readonly", module: "readonly", process: "readonly", console: "readonly" } }
+  },
   ...tseslint.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
